@@ -4,6 +4,12 @@ A modern implementation of the classic Tetris game featuring a sleek neon aesthe
 
 Try it here: https://neo-tetris.vercel.app/
 
+## Screenshots
+
+<img width="1273" height="856" alt="image" src="https://github.com/user-attachments/assets/13c314c8-cd0a-46f2-b8b6-96b8822d78d2" />
+
+<img width="1614" height="879" alt="image" src="https://github.com/user-attachments/assets/87f7efdc-5d54-446e-9c05-9567fa819aaf" />
+
 
 ## Features
 
