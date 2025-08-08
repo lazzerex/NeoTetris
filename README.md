@@ -2,7 +2,7 @@
 
 A modern implementation of the classic Tetris game featuring a sleek neon aesthetic, smooth controls, and enhanced gameplay mechanics built with vanilla JavaScript and HTML5 Canvas.
 
-Try it here: [Live Demo URL] (to be added)
+Try it here: https://neo-tetris.vercel.app/
 
 
 ## Features
