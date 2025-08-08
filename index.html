@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoTetris</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="mainMenu" class="menu-screen">
+        <div class="menu-container">
+            <h1 class="game-title">NeoTetris</h1>
+            <div class="menu-subtitle">Modern Tetris Experience</div>
+            
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="startNewGame()">Start Game</button>
+                <button class="menu-btn" onclick="showInstructions()">How to Play</button>
+                <button class="menu-btn" onclick="showAbout()">About</button>
+            </div>
+            
+            <div class="menu-footer">
+                <div class="version">v1.0</div>
+                <div class="credits">Built with JavaScript & Canvas</div>
+            </div>
+        </div>
+    </div>
+    <div id="instructionsMenu" class="menu-screen" style="display: none;">
+        <div class="menu-container">
+            <h2>How to Play</h2>
+            
+            <div class="instructions-content">
+                <div class="controls-section">
+                    <h3>Controls</h3>
+                    <div class="control-list">
+                        <div class="control-item"><span class="key">← →</span> Move left/right</div>
+                        <div class="control-item"><span class="key">↓</span> Soft drop</div>
+                        <div class="control-item"><span class="key">↑</span> Rotate piece</div>
+                        <div class="control-item"><span class="key">P</span> Pause/Resume</div>
+                        <div class="control-item"><span class="key">C</span> Hold piece</div>
+                        <div class="control-item"><span class="key">Space</span> Hard drop</div>
+                        
+                    </div>
+                </div>
+                
+                <div class="rules-section">
+                    <h3>Objective</h3>
+                    <p>Fill complete horizontal lines to clear them and earn points. The game speeds up as you progress through levels. Don't let the pieces reach the top!</p>
+                    
+                    <h3>Features</h3>
+                    <ul>
+                        <li><strong>Hold:</strong> Save a piece for later use (C key)</li>
+                        <li><strong>Ghost Piece:</strong> Shows where your piece will land</li>
+                        <li><strong>Line Clear:</strong> Complete rows disappear</li>
+                        <li><strong>Level Up:</strong> Game speeds up every 10 lines</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="startNewGame()">Start Game</button>
+                <button class="menu-btn" onclick="returnToMainMenu()">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+   
+    <div id="aboutMenu" class="menu-screen" style="display: none;">
+        <div class="menu-container">
+            <h2>About NeoTetris</h2>
+            
+            <div class="about-content">
+                <p>NeoTetris is a modern implementation of the classic Tetris game, built with HTML5 Canvas and JavaScript.</p>
+                
+                <h3>Features</h3>
+                <ul>
+                    <li>Modern neon aesthetic design</li>
+                    <li>Hold functionality</li>
+                    <li>Ghost piece preview</li>
+                    <li>Smooth controls with key repeat</li>
+                    <li>Progressive difficulty</li>
+                    <li>Responsive pause system</li>
+                </ul>
+                
+                <h3>Technology</h3>
+                <p>Built using vanilla JavaScript with HTML5 Canvas for rendering, organized in a modular ES6 architecture.</p>
+            </div>
+            
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="startNewGame()">Start Game</button>
+                <button class="menu-btn" onclick="returnToMainMenu()">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+   
+    <div id="gameContainer" class="game-container" style="display: none;">
+        <div class="left-sidebar">
+            <div class="info-panel">
+                <h3>Hold</h3>
+                <canvas id="holdCanvas" class="piece-preview" width="100" height="80"></canvas>
+                <div class="hold-instruction">Press C</div>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas" width="300" height="600"></canvas>
+        
+        <div class="sidebar">
+            <div class="info-panel">
+                <h1>NeoTetris</h1>
+                <div>Score: <span id="score">0</span></div>
+                <div>Lines: <span id="lines">0</span></div>
+                <div>Level: <span id="level">1</span></div>
+                <div style="margin-top: 10px; font-weight: bold;">Next:</div>
+                <canvas id="nextCanvas" class="piece-preview" width="100" height="80"></canvas>
+            </div>
+            <div class="info-panel controls">
+                <strong>Controls:</strong><br>
+                ← → Move<br>
+                ↓ Soft Drop<br>
+                ↑ Rotate<br>
+                Space Hard Drop<br>
+                C Hold Piece<br>
+            </div>
+            <div class="info-panel game-actions">
+                <button class="action-btn" onclick="togglePauseGame()">Pause (P)</button>
+                <button class="action-btn" onclick="restartCurrentGame()">Restart</button>
+                <button class="action-btn secondary" onclick="returnToMainMenu()">Menu</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="pauseMenu" class="menu-overlay" style="display: none;">
+        <div class="pause-container">
+            <h2>Game Paused</h2>
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="resumeGame()">Resume (P)</button>
+                <button class="menu-btn" onclick="restartCurrentGame()">Restart Game</button>
+                <button class="menu-btn secondary" onclick="returnToMainMenu()">Return to Menu</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="gameOverMenu" class="menu-overlay" style="display: none;">
+        <div class="game-over-container">
+            <h2>Game Over!</h2>
+            <div class="final-stats">
+                <div class="stat-item">Final Score: <span id="finalScore">0</span></div>
+                <div class="stat-item">Lines Cleared: <span id="finalLines">0</span></div>
+                <div class="stat-item">Level Reached: <span id="finalLevel">1</span></div>
+            </div>
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="startNewGame()">Play Again</button>
+                <button class="menu-btn secondary" onclick="returnToMainMenu()">Return to Menu</button>
+            </div>
+        </div>
+    </div>
+
+   
+    <script type="module" src="js/PieceData.js"></script>
+    <script type="module" src="js/GameRenderer.js"></script>
+    <script type="module" src="js/InputHandler.js"></script>
+    <script type="module" src="js/NeoTetris.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
