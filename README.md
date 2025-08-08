@@ -2,8 +2,13 @@
 
 A modern implementation of the classic Tetris game featuring a sleek neon aesthetic, smooth controls, and enhanced gameplay mechanics built with vanilla JavaScript and HTML5 Canvas.
 
-Try it here: [Live Demo URL] (to be added)
+Try it here: https://neo-tetris.vercel.app/
 
+## Screenshots
+
+<img width="1273" height="856" alt="image" src="https://github.com/user-attachments/assets/13c314c8-cd0a-46f2-b8b6-96b8822d78d2" />
+
+<img width="1401" height="823" alt="image" src="https://github.com/user-attachments/assets/9d87e5f8-4ea9-4ebc-a932-bbc2b8f3b3a2" />
 
 ## Features
 
@@ -26,8 +31,6 @@ Try it here: [Live Demo URL] (to be added)
 - **Arrow Up (↑)**: Rotate piece clockwise
 - **Spacebar**: Hard drop (instant placement)
 - **C**: Hold current piece for later use
-- **P**: Pause/Resume game
-- **Escape**: Return to main menu
 
 ### Game Rules
 - Fill complete horizontal lines to clear them and earn points
