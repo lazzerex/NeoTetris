@@ -8,8 +8,7 @@ Try it here: https://neo-tetris.vercel.app/
 
 <img width="1273" height="856" alt="image" src="https://github.com/user-attachments/assets/13c314c8-cd0a-46f2-b8b6-96b8822d78d2" />
 
-<img width="1614" height="879" alt="image" src="https://github.com/user-attachments/assets/87f7efdc-5d54-446e-9c05-9567fa819aaf" />
-
+<img width="1401" height="823" alt="image" src="https://github.com/user-attachments/assets/9d87e5f8-4ea9-4ebc-a932-bbc2b8f3b3a2" />
 
 ## Features
 
