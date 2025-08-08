@@ -26,8 +26,6 @@ Try it here: [Live Demo URL] (to be added)
 - **Arrow Up (↑)**: Rotate piece clockwise
 - **Spacebar**: Hard drop (instant placement)
 - **C**: Hold current piece for later use
-- **P**: Pause/Resume game
-- **Escape**: Return to main menu
 
 ### Game Rules
 - Fill complete horizontal lines to clear them and earn points
