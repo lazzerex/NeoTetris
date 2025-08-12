@@ -386,38 +386,44 @@ export class NeoTetris {
      * Lock the current piece to the board
      */
     lockPiece() {
-        
-        const tSpinResult = this.detectTSpin();
-        
-        
-        for (let r = 0; r < this.currentPiece.shape.length; r++) {
-            for (let c = 0; c < this.currentPiece.shape[r].length; c++) {
-                if (this.currentPiece.shape[r][c]) {
-                    const x = this.currentPiece.x + c;
-                    const y = this.currentPiece.y + r;
-                    
-                    if (y >= 0 && y < this.BOARD_HEIGHT && x >= 0 && x < this.BOARD_WIDTH) {
-                        this.board[y][x] = this.currentPiece.color;
-                    }
+    // Detect T-spin before locking the piece
+    const tSpinResult = this.detectTSpin();
+    
+    // Lock the piece to the board - ADD BOUNDS CHECKING
+    for (let r = 0; r < this.currentPiece.shape.length; r++) {
+        for (let c = 0; c < this.currentPiece.shape[r].length; c++) {
+            if (this.currentPiece.shape[r][c]) {
+                const x = this.currentPiece.x + c;
+                const y = this.currentPiece.y + r;
+                
+                // FIXED: Add proper bounds checking and handle pieces above board
+                if (y >= 0 && y < this.BOARD_HEIGHT && x >= 0 && x < this.BOARD_WIDTH) {
+                    this.board[y][x] = this.currentPiece.color;
+                } else if (y < 0) {
+                    // If piece extends above the board when locked, it's game over
+                    this.endGame();
+                    return;
                 }
             }
         }
-        
-    
-        this.tSpinData = tSpinResult;
-        
-        
-        this.clearLines();
-        
-        
-        this.spawnPiece();
-        
-        
-        const holdPanel = this.holdCanvas.parentElement;
-        if (holdPanel) {
-            holdPanel.classList.remove('hold-used');
-        }
     }
+
+    // Store T-spin data for scoring
+    this.tSpinData = tSpinResult;
+    
+    // Clear any completed lines
+    this.clearLines();
+    
+    // Spawn the next piece
+    this.spawnPiece();
+    
+    // Reset hold state visual
+    const holdPanel = this.holdCanvas.parentElement;
+    if (holdPanel) {
+        holdPanel.classList.remove('hold-used');
+    }
+}
+
     
     /**
      * Clear completed lines and update score with T-spin bonuses
